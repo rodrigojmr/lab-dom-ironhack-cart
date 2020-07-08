@@ -16,7 +16,6 @@ function calculateAll() {
   // const singleProduct = document.querySelector('.product');
   // updateSubtotal(singleProduct);
   // end of test
-
   // ITERATION 2
   const products = document.getElementsByClassName('product');
   const subtotals = [];
