@@ -47,8 +47,8 @@ function removeProduct(event) {
 function createProduct() {
   //... your code goes here
   const inputs = [...document.querySelectorAll('.create-product input')];
-  const nameInputValue = inputs[0].value;
-  const priceInputValue = inputs[1].valueAsNumber;
+  let nameInputValue = inputs[0].value;
+  let priceInputValue = inputs[1].valueAsNumber;
 
   const product = document.createElement('tr');
   product.setAttribute('class', 'product');
@@ -80,6 +80,9 @@ function createProduct() {
 
   const table = document.querySelector('tbody');
   table.appendChild(product);
+
+  inputs[0].value = '';
+  inputs[1].value = '';
 }
 
 window.addEventListener('load', () => {
