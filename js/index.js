@@ -2,7 +2,7 @@
 
 function updateSubtotal(product) {
   console.log('Calculating subtotal, yey!');
-  const price = parseInt(product.querySelector('.price span').textContent);
+  const price = parseFloat(product.querySelector('.price span').textContent);
   const quantity = product.querySelector('.quantity input').valueAsNumber;
   const subtotal = price * quantity;
   product.querySelector('.subtotal span').textContent = subtotal;
@@ -47,6 +47,40 @@ function removeProduct(event) {
 
 function createProduct() {
   //... your code goes here
+  const inputs = [...document.querySelectorAll('.create-product input')];
+  const nameInputValue = inputs[0].value;
+  const priceInputValue = inputs[1].valueAsNumber;
+
+  const product = document.createElement('tr');
+  product.setAttribute('class', 'product');
+
+  const nameCell = document.createElement('td');
+  nameCell.setAttribute('class', 'name');
+  nameCell.innerHTML = `<span>${nameInputValue}</span>`;
+  product.appendChild(nameCell);
+
+  const priceCell = document.createElement('td');
+  priceCell.setAttribute('class', 'price');
+  priceCell.innerHTML = `$<span>${priceInputValue}</span>`;
+  product.appendChild(priceCell);
+
+  const quantityCell = document.createElement('td');
+  quantityCell.setAttribute('class', 'quantity');
+  quantityCell.innerHTML = `<input type="number" value="0" min="0" placeholder="Quantity" />`;
+  product.appendChild(quantityCell);
+
+  const subtotalCell = document.createElement('td');
+  subtotalCell.setAttribute('class', 'subtotal');
+  subtotalCell.innerHTML = `$<span>0</span>`;
+  product.appendChild(subtotalCell);
+
+  const actionCell = document.createElement('td');
+  actionCell.setAttribute('class', 'action');
+  actionCell.innerHTML = `<button class="btn btn-remove">Remove</button>`;
+  product.appendChild(actionCell);
+
+  const table = document.querySelector('tbody');
+  table.appendChild(product);
 }
 
 window.addEventListener('load', () => {
@@ -56,5 +90,7 @@ window.addEventListener('load', () => {
   for (let button of removeButtons) {
     button.addEventListener('click', removeProduct);
   }
+  const addProductButton = document.querySelector('#create');
+  addProductButton.addEventListener('click', createProduct);
   //... your code goes here
 });
