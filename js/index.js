@@ -34,13 +34,12 @@ function calculateAll() {
 // ITERATION 4
 
 function removeProduct(event) {
-  console.log('The target in remove is:', target);
-
   //... your code goes here
   const target = event.currentTarget;
   const product = target.parentNode.parentNode;
   product.parentNode.removeChild(product);
   calculateAll();
+  console.log('The target in remove is:', target);
 }
 
 // ITERATION 5
@@ -84,11 +83,14 @@ function createProduct() {
 
   const actionCell = document.createElement('td');
   actionCell.setAttribute('class', 'action');
+  const removeButton = document.createElement('button');
+  removeButton.setAttribute('class', 'btn btn-remove');
   actionCell.innerHTML = `<button class="btn btn-remove">Remove</button>`;
   product.appendChild(actionCell);
 
   const table = document.querySelector('tbody');
   table.appendChild(product);
+  product.querySelector('.btn-remove').addEventListener('click', removeProduct);
 
   inputs[0].value = '';
   inputs[1].value = '';
@@ -103,5 +105,4 @@ window.addEventListener('load', () => {
   }
   const addProductButton = document.querySelector('#create');
   addProductButton.addEventListener('click', createProduct);
-  //... your code goes here
 });
