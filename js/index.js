@@ -50,6 +50,14 @@ function createProduct() {
   let nameInputValue = inputs[0].value;
   let priceInputValue = inputs[1].valueAsNumber;
 
+  if (!nameInputValue) {
+    alert('You need to add a name to the Product!');
+    return false;
+  } else if (!priceInputValue) {
+    alert('You need to add a price to the Product!');
+    return false;
+  }
+
   const product = document.createElement('tr');
   product.setAttribute('class', 'product');
 
